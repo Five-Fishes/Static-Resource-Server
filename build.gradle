@@ -44,8 +44,12 @@ test {
 }
 
 task copyResources(type: Copy) {
-    from '/Users/luxianze/Desktop/Projects/Engseen/Engseen-Purchase-Requisition-Frontend/build'
-    into 'src/main/resources/static'
+    if (project.hasProperty('webAppDir')) {
+        def webAppBuild = project.getProperty('webAppDir') + 'build'
+        println 'Copying resources from : ' + webAppBuild
+        from webAppBuild
+        into 'src/main/resources/static'
+    }
 }
 
 bootJar.configure {
