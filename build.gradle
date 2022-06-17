@@ -42,3 +42,12 @@ dependencyManagement {
 test {
     useJUnitPlatform()
 }
+
+task copyResources(type: Copy) {
+    from '/Users/luxianze/Desktop/Projects/Engseen/Engseen-Purchase-Requisition-Frontend/build'
+    into 'src/main/resources/static'
+}
+
+bootJar.configure {
+    dependsOn(copyResources)
+}
